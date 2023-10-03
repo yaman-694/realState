@@ -1,0 +1,80 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Work Sans', sans-serif;
+}
+
+header {
+    background-color: rgb(203, 207, 215);
+}
+.navBar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.nav2 {
+    display: flex;
+    justify-content: space-around
+}
+.companyName {
+    font-weight: 600;
+    font-size: 1rem;
+    margin-right: 38%;
+    text-decoration: none;
+}
+.companyName .first {
+    color: rgb(95, 101, 113);
+}
+
+.companyName .second {
+    color: rgb(52, 58, 70);
+}
+.searchBar {
+    background-color: rgb(245, 248, 255);
+    padding: 10px;
+    border-radius: 5px;
+    margin: 15px;
+    display: flex;
+    justify-content: space-between;
+    width: 15rem;
+}
+.navBar input {
+    background: transparent;
+    border: none;
+    align-items: center;
+}
+
+.navBar input:focus {
+    outline: none;
+}
+
+.navigators {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 30%;
+    list-style: none;
+    margin-left: 1rem;
+}
+.navigators li {
+    padding-inline: 0.8rem;
+}
+ul a{
+    list-style: none;
+    text-decoration: none;
+    color: rgb(62, 71, 80);
+}
+.navigators li:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 500px) {
+    .searchBar {
+        background-color: rgb(214, 222, 231);
+        padding: 10px;
+        border-radius: 5px;
+        margin: 15px;
+        display: flex;
+        width: 7rem;
+    }
+}
