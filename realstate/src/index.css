@@ -1,7 +1,7 @@
 * {
     margin: 0;
     padding: 0;
-    font-family: 'Work Sans', sans-serif;
+    font-family: 'Open Sans', sans-serif;
 }
 
 body {
@@ -9,36 +9,35 @@ body {
 }
 
 header {
-    background-color: rgb(203, 207, 215);
+    background-color: #e2e8f0;
 }
 
 .navBar {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-}
-
-.nav2 {
-    display: flex;
-    justify-content: space-around
+    width: 65%;
+    margin: auto;
 }
 
 .companyName {
     font-weight: 600;
-    font-size: 1rem;
+    font-size: 0.8rem;
+    flex: 1;
     margin-right: 38%;
     text-decoration: none;
 }
 
 .companyName .first {
-    color: rgb(95, 101, 113);
+    color: #64748b;
 }
 
 .companyName .second {
-    color: rgb(52, 58, 70);
+    color: #334155;
 }
 
 .searchBar {
+    flex:1;
     background-color: rgb(245, 248, 255);
     padding: 10px;
     border-radius: 5px;
@@ -59,12 +58,11 @@ header {
 }
 
 .navigators {
+    flex: 1;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    width: 30%;
     list-style: none;
-    margin-left: 1rem;
 }
 
 .navigators li {

@@ -7,6 +7,9 @@ import About from './pages/About'
 import Headers from './components/Header'
 function App() {
   return <BrowserRouter>
+      <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&display=swap');
+      </style>
       <Headers />
       <Routes>
         <Route path="/" element={<Home />} />

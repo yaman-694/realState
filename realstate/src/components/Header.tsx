@@ -7,33 +7,32 @@ export default function Header() {
             <div className='navBar'>
                 <a href="/" className='companyName'>
                     <h1>
-                        <span className='first'>Zyan</span>
-                        <span className='second'>Estate</span>
+                        <span className='first'>Hai</span>
+                        <span className='second'>sea</span>
                     </h1>
                 </a>
-                <div className='nav2'>
-                    <form className='searchBar'>
-                        <input type="text" placeholder='Search...' />
-                        <FaSearch className='searchIcon'></FaSearch>
-                    </form>
-                    <ul className='navigators'>
-                        <Link to='/'>
-                            <li>
-                                Home
-                            </li>
-                        </Link>
-                        <Link to='/about'>
-                            <li>
-                                About
-                            </li>
-                        </Link>
-                        <Link to='/signin'>
-                            <li>
-                                SignIn
-                            </li>
-                        </Link>
-                    </ul>
-                </div>
+                
+                <form className='searchBar'>
+                    <input type="text" placeholder='Search...' />
+                    <FaSearch className='searchIcon'></FaSearch>
+                </form>
+                <ul className='navigators'>
+                    <Link to='/'>
+                        <li>
+                            Home
+                        </li>
+                    </Link>
+                    <Link to='/about'>
+                        <li>
+                            About
+                        </li>
+                    </Link>
+                    <Link to='/signin'>
+                        <li>
+                            SignIn
+                        </li>
+                    </Link>
+                </ul>
             </div>
         </header>
     )
