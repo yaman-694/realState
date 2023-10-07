@@ -6,6 +6,7 @@ import SignUp from './pages/SignUp'
 import About from './pages/About'
 import Headers from './components/Header'
 import PrivateRoute from './components/privateRoute'
+import CreateList from './pages/createList'
 function App() {
   return <BrowserRouter>
       <style>
@@ -17,6 +18,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route element={<PrivateRoute />}>
           <Route path="/profile" element={<Profile />} />
+          <Route path='/create-list' element={<CreateList />} />
         </Route>
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signUp" element={<SignUp />} />

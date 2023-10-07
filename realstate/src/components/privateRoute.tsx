@@ -4,7 +4,7 @@ export default function PrivateRoute() {
     const { currentUser } = useAppSelector((state) => state.user);
     return (
         <div>
-            {currentUser ? <Outlet /> : <Navigate to='signin' />}
+            {currentUser.username ? <Outlet /> : <Navigate to='signin' />}
         </div>
     )
 }

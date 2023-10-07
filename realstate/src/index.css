@@ -10,6 +10,7 @@ body {
 
 header {
     background-color: #e2e8f0;
+    box-shadow: 0px 0 10px rgba(0, 0, 0, 0.3);
 }
 
 .navBar {
@@ -177,9 +178,10 @@ ul a {
     padding-left: 20px;
 }
 
-.profileForm button {
+.profileForm button, .profileForm a {
     border: none;
     display: block;
+    letter-spacing: 1.4px;
     margin: 4px;
     border-radius: 8px;
     padding: 1rem;
@@ -190,6 +192,12 @@ ul a {
     text-transform: uppercase;
 
     transition: background-color 0.5s ease-in-out;
+}
+
+.profileForm a {
+    text-decoration: none;
+    color: #f5f5f5;
+    background-color: #210330;
 }
 
 .profileForm button:hover {
@@ -204,6 +212,12 @@ ul a {
     justify-content: space-between;
     color: #be2416;
     font-weight: 500;
+}
+.footerContainer span {
+    cursor: pointer;
+}
+.footerContainer span:hover {
+    text-decoration: underline;
 }
 @media (max-width: 500px) {
     .searchBar {
