@@ -2,10 +2,11 @@ import React, {useState} from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { signInStart, signInSuccess, signInFailure } from '../redux/user/userSlice';
+import OAuth from '../components/oAuth';
 
 export default function SignIn() {
     const dispatch = useAppDispatch();
-    const [formData, setFormData] = useState({});
+    const [formData, setFormData] = useState({email: null, password: null});
     const {loading,error} = useAppSelector((state)=> state.user);
     const navigate = useNavigate();
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -17,9 +18,11 @@ export default function SignIn() {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         try {
             e.preventDefault();
+            if (!formData.email || !formData.password) {
+                return;
+            }
             dispatch(signInStart());
             console.log(loading);
-            console.log(formData);
             const response = await fetch('/api/auth/signin', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
@@ -41,12 +44,13 @@ export default function SignIn() {
     return (
         <div>
             <form onSubmit={handleSubmit} className='signUpForm'>
-                <h1 className='signUpHeading'>Sign In</h1>
+                <h1 className='pageHeading'>Sign In</h1>
                 <input type="email" name="email" id="email" placeholder='email' onChange={handleChange}/>
                 <input type="password" name="password" id="password" placeholder='password' onChange={handleChange}/>
-                <button disabled={loading}>
+                <button disabled={loading} className='manualButton'>
                     {loading ? 'Loading...' : 'Sign Up'}
                 </button>
+            <OAuth/>
             </form>
             <div className="signUpForm">
                 <p>Dont have an account?</p>

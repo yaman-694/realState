@@ -1,7 +1,9 @@
 import React from 'react'
 import { FaSearch } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
+import { useAppSelector } from '../redux/hooks'
 export default function Header() {
+    const { currentUser } = useAppSelector((state) => state.user);
     return (
         <header>
             <div className='navBar'>
@@ -11,7 +13,7 @@ export default function Header() {
                         <span className='second'>sea</span>
                     </h1>
                 </a>
-                
+
                 <form className='searchBar'>
                     <input type="text" placeholder='Search...' />
                     <FaSearch className='searchIcon'></FaSearch>
@@ -27,10 +29,12 @@ export default function Header() {
                             About
                         </li>
                     </Link>
-                    <Link to='/signin'>
-                        <li>
-                            SignIn
-                        </li>
+                    <Link to='/profile'>
+                        {currentUser ? <img className="profileImg" src={currentUser.avatar} alt="profile" />
+                            : <li>
+                                Sign In
+                            </li>
+                        }
                     </Link>
                 </ul>
             </div>

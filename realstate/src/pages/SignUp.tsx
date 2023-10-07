@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-
+import OAuth from '../components/oAuth';
 
 
 export default function SignUp() {
@@ -44,14 +44,15 @@ export default function SignUp() {
     return (
         <div>
             <form onSubmit={handleSubmit} className='signUpForm'>
-                <h1 className='signUpHeading'>Sign Up</h1>
+                <h1 className='pageHeading'>Sign Up</h1>
                 <input type="text" name="username" id="username" placeholder='username' onChange={handleChange}/>
                 <input type="email" name="email" id="email" placeholder='email' onChange={handleChange}/>
                 <input type="password" name="password" id="password" placeholder='password' onChange={handleChange}/>
                 <input type="password" name="confirm_password" id="confirm_password" placeholder='confirm password' onChange={handleChange}/>
-                <button disabled={loading}>
+                <button className='manualButton' disabled={loading}>
                     {loading ? 'Loading...' : 'Sign Up'}
                 </button>
+                <OAuth/>
             </form>
             <div className="signUpForm">
                 <p>Have an account?</p>
