@@ -1,3 +1,10 @@
+:root {
+    --border-color: rgb(181, 181, 181);
+    --font-size: 16px;
+    --background-color: #f5f5f5;
+    --error: #be2416;
+    --border-radius: 8px;
+}
 * {
     margin: 0;
     padding: 0;
@@ -5,7 +12,8 @@
 }
 
 body {
-    background: #f5f5f5;
+    background-color: #323232;
+    background: var(--background-color)
 }
 
 header {
@@ -100,7 +108,7 @@ ul a {
 .signUpForm input {
     margin: .3rem;
     border: 1.3px solid slategrey;
-    font-size: 14px;
+    font-size: var(--font-size);
     border-radius: 8px;
     padding: 1rem;
     padding-left: 20px;
@@ -108,6 +116,7 @@ ul a {
 
 .pageHeading {
     margin: 2rem;
+    text-align: center;
 }
 
 
@@ -171,8 +180,8 @@ ul a {
 
 .profileForm input {
     margin: .3rem;
-    border: 1.3px solid rgb(0, 0, 0);
-    font-size: 14px;
+    border: 1.3px solid var(--border-color);
+    font-size: var(--font-size);
     border-radius: 8px;
     padding: 1rem;
     padding-left: 20px;
@@ -219,6 +228,184 @@ ul a {
 .footerContainer span:hover {
     text-decoration: underline;
 }
+.createListContainer {
+    width: 40%;
+    margin: auto;
+}
+.createListForm {
+    text-align: center;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+
+.inputContainer {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 1rem;
+}
+
+.inputContainer input, .inputContainer textarea {
+    font-size: var(--font-size);
+    font-weight: 500;
+    border-radius: 8px;
+    padding: 0.7rem;
+    border: 1.5px solid var(--border-color);
+}
+
+.checkBoxContainer {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.checkBox {
+    display: flex;
+    gap: .3rem;
+    font-size: var(--font-size);
+}
+.checkBox input{
+    width: var(--font-size);
+}
+
+.counterContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.counterContainer .priceInnerContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    align-items: center;
+}
+
+.counterContainer input {
+    width: 3rem;    
+}
+
+.counterContainer label {
+    font-size: var(--font-size);
+}
+.counter {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    font-size: var(--font-size);
+}
+
+.priceContainer {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    font-size: var(--font-size);
+}
+
+.price {
+    display: flex;
+    flex-direction: column;
+    font-size: var(--font-size);
+}
+.smFont {
+    font-size: 14px;
+}
+
+.imgContainer {
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+    align-items: start;
+    flex:1;
+}
+.upload {
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+}
+.imgInput {
+    padding: .5rem;
+    font-size: var(--font-size);
+    font-weight: 300;
+    border-radius: 8px;
+    border: 1.5px solid var(--border-color);
+}
+#imgUploadButton {
+    background-color: var(--background-color);
+    border: 1.5px solid #4d5dfb;
+    color: #4d5dfb;
+    padding: .5rem;
+    border-radius: 8px;
+    font-size: var(--font-size);
+    font-weight: 500;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+#imgUploadButton:hover {
+    box-shadow: 0.4px 0px 10px #4d5dfb;
+}
+.imgContainer p {
+    font-size: var(--font-size);
+    font-weight: 500;
+}
+.imgContainer span {
+    font-weight: 300;
+    font-size: 16px;
+    color: rgb(78, 75, 75)
+}
+
+.createListForm button {
+    border: none;
+
+    box-sizing: border-box;
+    border-radius: 8px;
+    padding: 1rem;
+    background-color: #4d5dfb;
+    color: #f5f5f5;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.5s ease-in-out;
+}
+
+.images-container {
+    display: flex;
+    border: 1px solid #ccc;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 8px;
+}
+
+.images-container img {
+    margin: 15px;
+    border-radius: 5px;
+}
+
+
+.images-container button {
+    box-sizing: border-box;
+    background-color: var(--background-color);
+    padding: 15px;
+    color: var(--error);
+    text-transform: uppercase;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.images-container button:hover {
+    border: 1px solid var(--error);
+    border-radius: 5px;
+}
+
+
 @media (max-width: 500px) {
     .searchBar {
         background-color: rgb(214, 222, 231);
