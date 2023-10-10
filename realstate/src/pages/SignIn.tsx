@@ -18,6 +18,7 @@ export default function SignIn() {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         try {
             e.preventDefault();
+            console.log(e.currentTarget.type);
             if (!formData.email || !formData.password) {
                 return;
             }
@@ -48,9 +49,9 @@ export default function SignIn() {
                 <input type="email" name="email" id="email" placeholder='email' onChange={handleChange}/>
                 <input type="password" name="password" id="password" placeholder='password' onChange={handleChange}/>
                 <button disabled={loading} className='manualButton'>
-                    {loading ? 'Loading...' : 'Sign Up'}
+                    {loading ? 'Loading...' : 'Sign In'}
                 </button>
-            <OAuth/>
+                <OAuth/>
             </form>
             <div className="signUpForm">
                 <p>Dont have an account?</p>

@@ -17,6 +17,10 @@ export default function OAuth() {
                 body: JSON.stringify({name: result.user.displayName, email: result.user.email, photo: result.user.photoURL})
             })
             const data = await res.json();
+            if(data.success === false){
+                console.log(data.message);
+                return;
+            }
             dispatch(signInSuccess(data));
             naivgate('/home')
         } catch (error) {
@@ -25,6 +29,6 @@ export default function OAuth() {
     }
 
     return (
-            <button id='googleSignIn' onClick={handleGoogleClick}>Sign in with google</button>
+            <button id='googleSignIn' type='button' onClick={handleGoogleClick}>Sign in with google</button>
     )
 }

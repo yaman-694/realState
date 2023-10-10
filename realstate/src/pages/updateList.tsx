@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useAppSelector } from "../redux/hooks";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
     getDownloadURL,
     getStorage,
@@ -8,9 +8,21 @@ import {
     uploadBytesResumable,
 } from 'firebase/storage';
 import { app } from '../firebase';
-import { Listing } from "./updateList";
-
-export default function CreateList() {
+export interface Listing {
+    imageUrls: string[],
+    name: string,
+    description: string,
+    address: string,
+    type: string,
+    bedrooms: number,
+    bathrooms: number,
+    regularPrice: number,
+    discountPrice: number,
+    offer: boolean,
+    parking: boolean,
+    furnished: boolean,
+}
+export default function UpdateList() {
     const { currentUser } = useAppSelector((state) => state.user);
     const navigate = useNavigate();
     const [files, setFiles] = useState<File[]>([]);
@@ -32,6 +44,8 @@ export default function CreateList() {
     const [uploading, setUploading] = useState(false);
     const [error, setError] = useState<string>('');
     const [loading, setLoading] = useState(false);
+    const params = useParams();
+
     const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const files = e.target.files;
         if (files) {
@@ -140,7 +154,7 @@ export default function CreateList() {
             console.log(formData);
             setLoading(true);
             setError('');
-            const response = await fetch('/api/listing/create', {
+            const response = await fetch(`/api/listing/update/${params.listId}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -151,6 +165,7 @@ export default function CreateList() {
             const data = await response.json();
             if (data.success === false) {
                 setError(data.message);
+                console.log(data.message);
                 setLoading(false);
                 return;
             }
@@ -164,16 +179,32 @@ export default function CreateList() {
     }
 
     const handleRemoveImage = (index: number) => {
-
-        console.log(index)
+        setError('');
         setFormData({
             ...formData,
             imageUrls: formData.imageUrls.filter((_, i) => i !== index),
         })
     }
+
+    useEffect(() => {
+        const fetchListing = async () => {
+            setError('');
+            const listId = params.listId;
+            const response = await fetch(`/api/listing/get/${listId}`);
+            const data = await response.json();
+            if (data.success === false) {
+                setError(data.message);
+                return;
+            }
+            setFormData(data);
+            console.log(data);
+        }
+        fetchListing();
+    }, [])
+
     return (
         <div className="createListContainer">
-            <h1 className='pageHeading'>Create List</h1>
+            <h1 className='pageHeading'>Update List</h1>
             <form onSubmit={handleSubmit} className="createListForm">
                 <div className="inputContainer">
                     <input type="text" placeholder="Name" id='name' onChange={handleChange} value={formData.name} required />
@@ -251,9 +282,8 @@ export default function CreateList() {
                     }
                 </div>
                 <button disabled={loading}>{
-                    loading ? 'Loading...' : 'Create List'
+                    loading ? 'Loading...' : 'Update List'
                 }</button>
-
             </form>
         </div>
     )
