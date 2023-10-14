@@ -806,3 +806,44 @@ ul a {
     overflow: hidden;
 }
 
+.home-container {
+}
+
+.top {
+    position: relative;
+    margin: 3rem;
+    height: 40vh;
+}
+.top-heading {
+    font-size: 4rem;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 0.5px;
+    margin-bottom: 1rem;
+}
+
+.top-content {
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    transform: translate(-50%, -50%);
+}
+.listing{
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+    margin: 3rem;
+}
+
+.listing-type {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.listing-type-lists{
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    flex-wrap: wrap;
+}

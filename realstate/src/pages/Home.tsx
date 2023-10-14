@@ -25,7 +25,7 @@ export default function Home() {
         const fetchRentListings = async () => {
 
             try {
-                const res = await fetch('/api/listing/get?type=rent&limit=4');
+                const res = await fetch('/api/listing/get?type=rent&limit=5');
                 const data = await res.json();
                 setRentListings(data);
                 fetchSaleListings();
@@ -36,7 +36,7 @@ export default function Home() {
 
         const fetchSaleListings = async () => {
             try {
-                const res = await fetch('/api/listing/get?type=sale&limit=4');
+                const res = await fetch('/api/listing/get?type=sale&limit=5');
                 const data = await res.json();
                 setSaleListings(data);
             } catch (error) {
@@ -48,23 +48,26 @@ export default function Home() {
     return (
         <div className='home-container'>
             <section className='top'>
-                <h1 className=''>
-                    Find your next <span className=''>perfect</span>
-                    <br />
-                    place with ease
-                </h1>
-                <div className=''>
-                    Sahand Estate is the best place to find your next perfect place to
-                    live.
-                    <br />
-                    We have a wide range of properties for you to choose from.
+                <div className="top-content">
+
+                    <h1 className='top-heading'>
+                        Find your next <span className=''>perfect</span>
+                        <br />
+                        place with ease
+                    </h1>
+                    <div className=''>
+                        Sahand Estate is the best place to find your next perfect place to
+                        live.
+                        <br />
+                        We have a wide range of properties for you to choose from.
+                    </div>
+                    <Link
+                        to={'/search'}
+                        className=''
+                    >
+                        Let's get started...
+                    </Link>
                 </div>
-                <Link
-                    to={'/search'}
-                    className=''
-                >
-                    Let's get started...
-                </Link>
             </section>
             <section className='swiper'>
                 <Swiper navigation>
@@ -85,12 +88,12 @@ export default function Home() {
             </section>
             <section className='listing'>
                 {offerListings && offerListings.length > 0 && (
-                    <div className=''>
-                        <div className='my-3'>
-                            <h2 className='text-2xl font-semibold text-slate-600'>Recent offers</h2>
-                            <Link className='text-sm text-blue-800 hover:underline' to={'/search?offer=true'}>Show more offers</Link>
+                    <div className='listing-type'>
+                        <div className=''>
+                            <h2 className=''>Recent offers</h2>
+                            <Link className='' to={'/search?offer=true'}>Show more offers</Link>
                         </div>
-                        <div className='flex flex-wrap gap-4'>
+                        <div className='listing-type-lists'>
                             {offerListings.map((listing) => (
                                 <ListingItem listing={listing} key={listing._id} />
                             ))}
@@ -98,12 +101,12 @@ export default function Home() {
                     </div>
                 )}
                 {rentListings && rentListings.length > 0 && (
-                    <div className=''>
-                        <div className='my-3'>
-                            <h2 className='text-2xl font-semibold text-slate-600'>Recent places for rent</h2>
-                            <Link className='text-sm text-blue-800 hover:underline' to={'/search?type=rent'}>Show more places for rent</Link>
+                    <div className='listing-type'>
+                        <div className=''>
+                            <h2 className=''>Recent places for rent</h2>
+                            <Link className='' to={'/search?type=rent'}>Show more places for rent</Link>
                         </div>
-                        <div className='flex flex-wrap gap-4'>
+                        <div className='listing-type-lists'>
                             {rentListings.map((listing) => (
                                 <ListingItem listing={listing} key={listing._id} />
                             ))}
