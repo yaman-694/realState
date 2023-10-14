@@ -133,7 +133,7 @@ export default function UpdateList() {
 
         if (
             e.target.type === 'number' ||
-            e.target.type === 'textarea'
+            e.target.type === 'text'
         ) {
             setFormData({
                 ...formData,
@@ -274,7 +274,6 @@ export default function UpdateList() {
                             uploading ? 'Uploading...' : 'Upload'
                         }</button>
                     </div>
-                    {error && imageUploadError && <p style={{ color: '#be2416' }}>{error}</p>}
                     {
                         formData.imageUrls.length > 0 && (formData.imageUrls.map((url, index) => {
                             return (

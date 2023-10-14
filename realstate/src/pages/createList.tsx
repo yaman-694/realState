@@ -113,11 +113,11 @@ export default function CreateList() {
                 [e.target.id]: e.target.checked,
             });
         }
-
         if (
             e.target.type === 'number' ||
-            e.target.type === 'textarea'
+            e.target.type === 'text'
         ) {
+            console.log(e.target.value)
             setFormData({
                 ...formData,
                 [e.target.id]: e.target.value,
