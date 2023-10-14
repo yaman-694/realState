@@ -42,7 +42,6 @@ export default function UpdateList() {
         parking: false,
         furnished: false,
     });
-    const [imageUploadError, setImageUploadError] = useState(false);
     const [uploading, setUploading] = useState(false);
     const [error, setError] = useState<string>('');
     const [loading, setLoading] = useState(false);
@@ -57,7 +56,6 @@ export default function UpdateList() {
     }
     const handleImageUpload = () => {
         if (files.length + formData.imageUrls.length < 7 && files.length > 0) {
-            setImageUploadError(false);
             setUploading(true);
             const promises = [];
 
@@ -72,11 +70,9 @@ export default function UpdateList() {
                 });
                 setUploading(false);
             }).catch((error) => {
-                setImageUploadError(true);
                 console.log(error);
             });
         } else {
-            setImageUploadError(true);
             setError('Max 6 images');
         }
     }
@@ -274,6 +270,7 @@ export default function UpdateList() {
                             uploading ? 'Uploading...' : 'Upload'
                         }</button>
                     </div>
+                        {error && <p style={{ color: '#be2416' }}>{error}</p>}
                     {
                         formData.imageUrls.length > 0 && (formData.imageUrls.map((url, index) => {
                             return (
