@@ -90,7 +90,7 @@ export default function CreateList() {
         })
     }
 
-    const handleChange = (e) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement> ) => {
         if (e.target.id === 'sell' || e.target.id === 'rent') {
             setFormData({
                 ...formData,
@@ -123,7 +123,6 @@ export default function CreateList() {
     };
 
     const handleSubmit = async (e: React.ChangeEvent<HTMLInputElement>) => {
-
         e.preventDefault();
         try {
             setError('');
@@ -179,7 +178,7 @@ export default function CreateList() {
                     <input type="text" placeholder="Name" id='name' onChange={handleChange} value={formData.name} required />
                     <textarea placeholder="Description" id='description' onChange={handleChange} value={formData.description} required ></textarea>
                     <input type="text" id='address' placeholder="Address" onChange={handleChange} value={formData.address} required />
-                    <div className="checkBoxContainer">
+                    <div className="check-box-container">
                         <div className="checkBox">
                             <input type="checkbox" onChange={handleChange} checked={formData.type === 'sell'} id='sell'/>
                             <span>Sell</span>

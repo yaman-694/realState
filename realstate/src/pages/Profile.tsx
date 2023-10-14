@@ -56,7 +56,6 @@ export default function Profile() {
             }
         )
     }
-
     const handleDeleteUser = async () => {
         try {
             dispatch(deleteUserStart());
@@ -75,7 +74,6 @@ export default function Profile() {
             }
         }
     };
-
     const handleSignOut = async () => {
         try {
             dispatch(signOutUserStart());
@@ -131,10 +129,10 @@ export default function Profile() {
             console.log(data);
             setUserListings(data);
         } catch (error) {
+            console.log(error);
             setShowListingsError(true);
         }
     };
-
     const handleListingDelete = async (listingId: string) => {
         try {
             const res = await fetch(`/api/listing/delete/${listingId}`, {
@@ -154,6 +152,7 @@ export default function Profile() {
             console.log(error.message);
         }
     };
+    
     return (
         <div className='profileContainer'>
             <h1 className='pageHeading'>Profile</h1>

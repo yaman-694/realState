@@ -9,6 +9,7 @@ import {
 } from 'firebase/storage';
 import { app } from '../firebase';
 export interface Listing {
+    _id?: string,
     imageUrls: string[],
     name: string,
     description: string,
@@ -21,6 +22,7 @@ export interface Listing {
     offer: boolean,
     parking: boolean,
     furnished: boolean,
+    userRef?: string,
 }
 export default function UpdateList() {
     const { currentUser } = useAppSelector((state) => state.user);
@@ -210,7 +212,7 @@ export default function UpdateList() {
                     <input type="text" placeholder="Name" id='name' onChange={handleChange} value={formData.name} required />
                     <textarea placeholder="Description" id='description' onChange={handleChange} value={formData.description} required ></textarea>
                     <input type="text" id='address' placeholder="Address" onChange={handleChange} value={formData.address} required />
-                    <div className="checkBoxContainer">
+                    <div className="check-box-container">
                         <div className="checkBox">
                             <input type="checkbox" onChange={handleChange} checked={formData.type === 'sell'} id='sell'/>
                             <span>Sell</span>
