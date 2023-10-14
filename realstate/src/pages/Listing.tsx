@@ -4,13 +4,12 @@ import { Listing } from './updateList';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore from 'swiper';
 import { Navigation } from 'swiper/modules';
-import { useAppSelector, useAppDispatch } from '../redux/hooks'
+import { useAppSelector } from '../redux/hooks'
 import 'swiper/css/bundle';
 import {
     FaBath,
     FaBed,
     FaChair,
-    FaMapMarkedAlt,
     FaMapMarkerAlt,
     FaParking,
     FaShare,

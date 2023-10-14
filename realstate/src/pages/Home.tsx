@@ -1,4 +1,4 @@
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useState, useEffect } from 'react';
 import { Listing } from './updateList';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -23,7 +23,7 @@ export default function Home() {
             }
         };
         const fetchRentListings = async () => {
-    
+
             try {
                 const res = await fetch('/api/listing/get?type=rent&limit=4');
                 const data = await res.json();

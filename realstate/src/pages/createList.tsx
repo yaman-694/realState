@@ -89,7 +89,12 @@ export default function CreateList() {
             });
         })
     }
-
+    const handleChangeText = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+        setFormData({
+            ...formData,
+            [e.target.id]: e.target.value,
+        });
+    }
     const handleChange = (e: React.ChangeEvent<HTMLInputElement> ) => {
         if (e.target.id === 'sell' || e.target.id === 'rent') {
             setFormData({
@@ -111,7 +116,6 @@ export default function CreateList() {
 
         if (
             e.target.type === 'number' ||
-            e.target.type === 'text' ||
             e.target.type === 'textarea'
         ) {
             setFormData({
@@ -122,7 +126,7 @@ export default function CreateList() {
 
     };
 
-    const handleSubmit = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
             setError('');
@@ -176,7 +180,7 @@ export default function CreateList() {
             <form onSubmit={handleSubmit} className="createListForm">
                 <div className="inputContainer">
                     <input type="text" placeholder="Name" id='name' onChange={handleChange} value={formData.name} required />
-                    <textarea placeholder="Description" id='description' onChange={handleChange} value={formData.description} required ></textarea>
+                    <textarea placeholder="Description" id='description' onChange={handleChangeText} value={formData.description} required ></textarea>
                     <input type="text" id='address' placeholder="Address" onChange={handleChange} value={formData.address} required />
                     <div className="check-box-container">
                         <div className="checkBox">
@@ -237,7 +241,7 @@ export default function CreateList() {
                             uploading ? 'Uploading...' : 'Upload'
                         }</button>
                     </div>
-                        {error && <p style={{color: '#be2416'}}>{error}</p>}
+                        {error && imageUploadError && <p style={{color: '#be2416'}}>{error}</p>}
                     {
                         formData.imageUrls.length > 0 && (formData.imageUrls.map((url, index) => {
                             return (

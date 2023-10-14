@@ -89,24 +89,30 @@ export default function UpdateList() {
             const uploadTask = uploadBytesResumable(storageRef, file);
 
             uploadTask.on('state_changed',
-            (snapshot) => {
-                const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                console.log('Upload is ' + progress + '% done');
-            },
-            (error)=>{
-                console.log(error)
-                reject(error);
-            },
-            ()=>{
-                getDownloadURL(uploadTask.snapshot.ref).then((downloadURL)=>{
-                    console.log('File available at', downloadURL)
-                    resolve(downloadURL);
+                (snapshot) => {
+                    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                    console.log('Upload is ' + progress + '% done');
+                },
+                (error) => {
+                    console.log(error)
+                    reject(error);
+                },
+                () => {
+                    getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                        console.log('File available at', downloadURL)
+                        resolve(downloadURL);
+                    });
                 });
-            });
         })
     }
 
-    const handleChange = (e) => {
+    const handleChangeText = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+        setFormData({
+            ...formData,
+            [e.target.id]: e.target.value,
+        });
+    }
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.id === 'sell' || e.target.id === 'rent') {
             setFormData({
                 ...formData,
@@ -127,7 +133,6 @@ export default function UpdateList() {
 
         if (
             e.target.type === 'number' ||
-            e.target.type === 'text' ||
             e.target.type === 'textarea'
         ) {
             setFormData({
@@ -138,17 +143,15 @@ export default function UpdateList() {
 
     };
 
-    const handleSubmit = async (e: React.ChangeEvent<HTMLInputElement>) => {
-
-        e.preventDefault();
+    const handleSubmit = async () => {
         try {
             setError('');
-            if(formData.imageUrls.length === 0){
+            if (formData.imageUrls.length === 0) {
                 setError('Please upload at least one image');
 
                 return;
             }
-            if(formData.regularPrice < formData.discountPrice){
+            if (formData.regularPrice < formData.discountPrice) {
                 console.log(formData.regularPrice, formData.discountPrice)
                 setError('Discount price must be lower than regular price');
                 return;
@@ -176,7 +179,7 @@ export default function UpdateList() {
             navigate('/listing/' + data._id);
         } catch (error: unknown) {
             error instanceof Error &&
-            setError(error.message);
+                setError(error.message);
         }
     }
 
@@ -210,11 +213,11 @@ export default function UpdateList() {
             <form onSubmit={handleSubmit} className="createListForm">
                 <div className="inputContainer">
                     <input type="text" placeholder="Name" id='name' onChange={handleChange} value={formData.name} required />
-                    <textarea placeholder="Description" id='description' onChange={handleChange} value={formData.description} required ></textarea>
+                    <textarea placeholder="Description" id='description' onChange={handleChangeText} value={formData.description} required ></textarea>
                     <input type="text" id='address' placeholder="Address" onChange={handleChange} value={formData.address} required />
                     <div className="check-box-container">
                         <div className="checkBox">
-                            <input type="checkbox" onChange={handleChange} checked={formData.type === 'sell'} id='sell'/>
+                            <input type="checkbox" onChange={handleChange} checked={formData.type === 'sell'} id='sell' />
                             <span>Sell</span>
                         </div>
                         <div className="checkBox">
@@ -252,12 +255,12 @@ export default function UpdateList() {
                         </div>
                         {formData.offer && (
                             <div className='priceInnerContainer'>
-                            <input type="number" id='discountPrice' min='0' max='100000' required onChange={handleChange} value={formData.discountPrice} />
-                            <div className='price'>
-                                <span>Discount Price</span>
-                                <span className='smFont'>($ / month)</span>
+                                <input type="number" id='discountPrice' min='0' max='100000' required onChange={handleChange} value={formData.discountPrice} />
+                                <div className='price'>
+                                    <span>Discount Price</span>
+                                    <span className='smFont'>($ / month)</span>
+                                </div>
                             </div>
-                        </div>
                         )}
                     </div>
                 </div>
@@ -267,17 +270,17 @@ export default function UpdateList() {
                     </p>
                     <div className='upload'>
                         <input type="file" accept="image/*" id="images" className="imgInput" onChange={handleImageChange} multiple />
-                        <button type='button' onClick={handleImageUpload}id="imgUploadButton" disabled={uploading}>{
+                        <button type='button' onClick={handleImageUpload} id="imgUploadButton" disabled={uploading}>{
                             uploading ? 'Uploading...' : 'Upload'
                         }</button>
                     </div>
-                        {error && <p style={{color: '#be2416'}}>{error}</p>}
+                    {error && imageUploadError && <p style={{ color: '#be2416' }}>{error}</p>}
                     {
                         formData.imageUrls.length > 0 && (formData.imageUrls.map((url, index) => {
                             return (
                                 <div key={url} className="images-container">
                                     <img src={url} width='150px' alt="photoList" key={url} />
-                                    <button type='button' onClick={()=>handleRemoveImage(index)} className='btn'>Delete</button>
+                                    <button type='button' onClick={() => handleRemoveImage(index)} className='btn'>Delete</button>
                                 </div>
                             )
                         }))

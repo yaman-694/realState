@@ -2,6 +2,7 @@ import {useEffect, useState} from 'react'
 import { useNavigate } from 'react-router-dom';
 import { Listing } from './updateList';
 import ListingItem from '../components/ListingItem';
+
 export default function Search() {
     const navigate = useNavigate();
     const [sidebardata, setSidebardata] = useState({
@@ -80,7 +81,17 @@ export default function Search() {
         setListings([...listings, ...data]);
     };
     
-    const handleChange = (e) => {
+
+    const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        if (e.target.id === 'sort_order') {
+            const sort = e.target.value.split('_')[0] || 'created_at';
+
+            const order = e.target.value.split('_')[1] || 'desc';
+
+            setSidebardata({ ...sidebardata, sort, order });
+        }
+    };
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (
             e.target.id === 'all' ||
             e.target.id === 'rent' ||
@@ -101,19 +112,11 @@ export default function Search() {
             setSidebardata({
                 ...sidebardata,
                 [e.target.id]:
-                    e.target.checked || e.target.checked === 'true' ? true : false,
+                    e.target.checked || e.target.checked.toString() === 'true' ? true : false,
             });
         }
-
-        if (e.target.id === 'sort_order') {
-            const sort = e.target.value.split('_')[0] || 'created_at';
-
-            const order = e.target.value.split('_')[1] || 'desc';
-
-            setSidebardata({ ...sidebardata, sort, order });
-        }
     };
-    const handleSubmit = (e) => {
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const urlParams = new URLSearchParams();
         urlParams.set('searchTerm', sidebardata.searchTerm);
@@ -169,7 +172,7 @@ export default function Search() {
                         <div className="check-box-container">
                             <label className='font-semibold'>Sort:</label>
                             <select
-                                onChange={handleChange}
+                                onChange={handleSelectChange}
                                 defaultValue={'created_at_desc'}
                                 id='sort_order'
                                 className='select-btn'

@@ -1,4 +1,3 @@
-import React from 'react'
 import { ListingProps } from './Contact'
 import { MdLocationOn } from 'react-icons/md';
 import { Link } from 'react-router-dom';
