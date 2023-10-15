@@ -48,14 +48,13 @@ export default function Home() {
     return (
         <div className='home-container'>
             <section className='top'>
-                <div className="top-content">
-
+                <div className="top-content container">
                     <h1 className='top-heading'>
                         Find your next <span className=''>perfect</span>
                         <br />
                         place with ease
                     </h1>
-                    <div className=''>
+                    <div className='sub-heading'>
                         Sahand Estate is the best place to find your next perfect place to
                         live.
                         <br />
@@ -69,7 +68,7 @@ export default function Home() {
                     </Link>
                 </div>
             </section>
-            <section className='swiper'>
+            <section className='swiper-home'>
                 <Swiper navigation>
                     {
                         offerListings && offerListings.length > 0 && offerListings.map((listing) => (
@@ -86,14 +85,14 @@ export default function Home() {
                     }
                 </Swiper>
             </section>
-            <section className='listing'>
+            <section className='container listing'>
                 {offerListings && offerListings.length > 0 && (
                     <div className='listing-type'>
-                        <div className=''>
-                            <h2 className=''>Recent offers</h2>
-                            <Link className='' to={'/search?offer=true'}>Show more offers</Link>
+                        <div className='heading-container'>
+                            <h2 className='listing-heading'>Recent offers</h2>
+                            <Link className='show-more' to={'/search?offer=true'}>Show more offers</Link>
                         </div>
-                        <div className='listing-type-lists'>
+                        <div className='listing-results'>
                             {offerListings.map((listing) => (
                                 <ListingItem listing={listing} key={listing._id} />
                             ))}
@@ -102,11 +101,11 @@ export default function Home() {
                 )}
                 {rentListings && rentListings.length > 0 && (
                     <div className='listing-type'>
-                        <div className=''>
-                            <h2 className=''>Recent places for rent</h2>
-                            <Link className='' to={'/search?type=rent'}>Show more places for rent</Link>
+                        <div className='heading-container'>
+                            <h2 className='listing-heading'>Recent places for rent</h2>
+                            <Link className='show-more' to={'/search?type=rent'}>Show more places for rent</Link>
                         </div>
-                        <div className='listing-type-lists'>
+                        <div className='listing-results'>
                             {rentListings.map((listing) => (
                                 <ListingItem listing={listing} key={listing._id} />
                             ))}
@@ -127,6 +126,7 @@ export default function Home() {
                     </div>
                 )}
             </section>
+            <footer />
         </div>
     )
 }

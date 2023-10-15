@@ -49,7 +49,7 @@ export default function Listing() {
             {loading && <h1 className='pageHeading'>Loading...</h1>}
             {error && <h1 className='pageHeading'>Error...</h1>}
             {listing && !loading && !error && (
-                <div>
+                <div className='listing-container'>
                     <Swiper navigation>
                         {listing.imageUrls.map((url) => (
                             <SwiperSlide key={url}>
@@ -81,7 +81,7 @@ export default function Listing() {
                         </p>
                     )}
 
-                    <div className="content-container">
+                    <div className="content-container container">
                         <p className='item-name'>
                             {listing.name} - ${' '}
                             {listing.offer

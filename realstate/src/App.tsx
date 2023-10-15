@@ -10,6 +10,7 @@ import CreateList from './pages/createList'
 import UpdateList from './pages/updateList'
 import Listing from './pages/Listing'
 import Search from './pages/Search'
+import Footer from './components/footer'
 function App() {
   return <BrowserRouter>
     <style>

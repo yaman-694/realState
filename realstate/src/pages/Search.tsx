@@ -193,7 +193,7 @@ export default function Search() {
                 <h1 className='font-semibold listing-heading'>
                     Listing results:
                 </h1>
-                <div className='listing-container-search-in'>
+                <div className='listing-results'>
                     {!loading && listings.length === 0 && (
                         <p className='text-xl text-slate-700'>No listing found!</p>
                     )}
@@ -209,6 +209,7 @@ export default function Search() {
                             <ListingItem key={listing._id} listing={listing} />
                         ))}
 
+                </div>
                     {showMore && (
                         <button
                             onClick={onShowMoreClick}
@@ -217,7 +218,6 @@ export default function Search() {
                             Show more
                         </button>
                     )}
-                </div>
             </div>
         </div>
     )
