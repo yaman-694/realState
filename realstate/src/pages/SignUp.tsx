@@ -56,8 +56,8 @@ export default function SignUp() {
             </form>
             <div className="signUpForm">
                 <p>Have an account?</p>
-                <Link to={'/singin'}>
-                    <span>Sign Up</span>
+                <Link to={'/signin'}>
+                    <span>Sign In</span>
                 </Link>
             </div>
             {error && <p>{error}</p>}
